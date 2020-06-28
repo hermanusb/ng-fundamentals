@@ -23,8 +23,6 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
     </div>
     `,
     styles: [`
-        .green { color: #003300 !important; }
-        .bold { font-weight: bold; }
         .thumbnail { min-height: 210px }
         .pad-left { padding-left: 20px }
         .well div { color: #bbb }
