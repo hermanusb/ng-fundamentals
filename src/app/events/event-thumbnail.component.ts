@@ -7,14 +7,20 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
         <h2>{{event.name}}</h2>
         <div>Date: {{event.date}}</div>
         <div>Time: {{event.time}}</div>
+        <div [ngSwitch]="event?.time">
+            <span *ngSwitchCase="'8:00 am'">Early start</span>
+            <span *ngSwitchCase="'10:00 am'">Late start</span>
+            <span *ngSwitchDefault> Normal start</span>
+        </div>
         <div>Price: {{event.price | currency }}</div>
-        <div>
+        <div [hidden]="event.location">
             <span>Location: {{event.location.address}}</span>
             <span class="pad-left">{{event.location.city}}, {{event.location.country}}</span>
         </div>
     </div>
     `,
     styles: [`
+        .thumbnail { min-height: 210px }
         .pad-left { padding-left: 20px }
         .well div { color: #bbb }
     `
@@ -22,6 +28,5 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class EventThumbnailComponent {
     @Input() event;
-   
     
 }
