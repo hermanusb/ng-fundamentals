@@ -18,6 +18,7 @@ import { EventListResolver } from './events/events-list-resolver.service';
 import { AuthService } from './user/auth.service';
 import { CreateSessionComponent } from './events/event-details/create-session.component';
 import { SessionListComponent } from './events/event-details/session-list.component';
+import { CollapsibleWellComponent } from './common/collapsible-well.component'
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { SessionListComponent } from './events/event-details/session-list.compon
     CreateEventComponent,
     Error404Component,
     CreateSessionComponent,
-    SessionListComponent
+    SessionListComponent,
+    CollapsibleWellComponent
   ],
   imports: [
     BrowserModule,
@@ -42,12 +44,12 @@ import { SessionListComponent } from './events/event-details/session-list.compon
     EventService,
     ToastrService,
     EventRouteActivator,
+    EventListResolver,
+    AuthService,
     {
       provide: 'canDeactivateCreateEvent',
       useValue: checkDirtyState
-    },
-    EventListResolver,
-    AuthService
+    }
   ],
   bootstrap: [EventsAppComponent]
 })
