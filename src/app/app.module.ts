@@ -3,25 +3,32 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { EventService } from './events/shared/event.service';
+import { TOASTR_TOKEN, Toastr } from './common/toastr.service';
+import { JQ_TOKEN } from './common/jquery.service';
+import { EventRouteActivator } from './events/event-details/event-route-activator.service';
+import { EventListResolver } from './events/events-list-resolver.service';
+import { AuthService } from './user/auth.service';
+
 import { EventsAppComponent } from './events-app.component';
 import { EventsListComponent } from './events/events-list.component';
 import { EventThumbnailComponent } from './events/event-thumbnail.component';
 import { NavBarComponent } from './nav/navbar.component';
-import { EventService } from './events/shared/event.service';
-import { TOASTR_TOKEN, Toastr } from './common/toastr.service';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
-import { appRoutes } from './routes';
 import { CreateEventComponent } from './events/create-event.component';
 import { Error404Component } from './errors/404.component';
-import { EventRouteActivator } from './events/event-details/event-route-activator.service';
-import { EventListResolver } from './events/events-list-resolver.service';
-import { AuthService } from './user/auth.service';
 import { CreateSessionComponent } from './events/event-details/create-session.component';
 import { SessionListComponent } from './events/event-details/session-list.component';
 import { CollapsibleWellComponent } from './common/collapsible-well.component';
+import { SimpleModalComponent } from './common/simple-modal.component';
+
 import { DurationPipe } from './events/shared/duration.pipe';
 
+import { appRoutes } from './routes';
+
+
 let toastr:Toastr = window['toastr'];
+let jquery = window['$'];
 
 @NgModule({
   declarations: [
@@ -35,7 +42,8 @@ let toastr:Toastr = window['toastr'];
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleWellComponent,
-    DurationPipe
+    DurationPipe,
+    SimpleModalComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +63,10 @@ let toastr:Toastr = window['toastr'];
     {
       provide: TOASTR_TOKEN,
       useValue: toastr
+    },
+    {
+      provide: JQ_TOKEN,
+      useValue: jquery
     }
   ],
   bootstrap: [EventsAppComponent]
